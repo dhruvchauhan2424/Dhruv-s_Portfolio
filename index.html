@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruv Chauhan | Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Dhruv Chauhan, Full Stack & Python Developer.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ultra-Premium Custom Cursor -->
+    <div id="magic-cursor">
+        <div id="cursor-particles"></div>
+        <div id="cursor-main">
+            <div class="cursor-glow"></div>
+            <div class="cursor-icon">
+                <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25,25 L55,25 A25,25 0 0,1 80,50 A25,25 0 0,1 55,75 L25,75 Z"
+                        stroke="url(#cursor-logo-grad)" stroke-width="8" stroke-linejoin="round" fill="none" />
+                    <path d="M45,25 L45,75" stroke="var(--cyan)" stroke-width="4" />
+                    <path d="M68,38 A15,15 0 0,0 52,50 A15,15 0 0,0 68,62" stroke="var(--purple)" stroke-width="6"
+                        stroke-linecap="round" fill="none" />
+                    <defs>
+                        <linearGradient id="cursor-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--cyan)" />
+                            <stop offset="100%" stop-color="var(--purple)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="cursor-text">View Project</div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner"></div>
+        </div>
+        <div class="loader-text">Dhruv Chauhan Full Stack Developer</div>
+    </div>
+
+    <!-- Background Canvas for Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <svg class="header-logo" width="40" height="40" viewBox="0 0 100 100" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <!-- Futuristic D & C merged monogram -->
+                <path d="M25,25 L55,25 A25,25 0 0,1 80,50 A25,25 0 0,1 55,75 L25,75 Z" stroke="url(#logo-grad)"
+                    stroke-width="8" stroke-linejoin="round" fill="none" />
+                <path d="M45,25 L45,75" stroke="var(--cyan)" stroke-width="4" />
+                <path d="M68,38 A15,15 0 0,0 52,50 A15,15 0 0,0 68,62" stroke="var(--purple)" stroke-width="6"
+                    stroke-linecap="round" fill="none" />
+                <defs>
+                    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="var(--cyan)" />
+                        <stop offset="100%" stop-color="var(--purple)" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span class="logo-text">Dhruv Chauhan</span>
+        </div>
+        <div class="header-right">
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Journey</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-slider">
+                    <input type="checkbox" id="theme-slider" />
+                    <div class="slider round">
+                        <i class="fa-solid fa-moon"></i>
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                </label>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="hero-content reveal">
+                <p class="greeting">System Ready <i class="fa-solid fa-bolt" style="color: var(--cyan);"></i></p>
+                <h1 class="hero-title">
+                    Hi, I'm <span class="highlight">Dhruv Chauhan</span>
+                </h1>
+                <div class="typing-container">
+                    <span class="typing-text"></span><span class="cursor">&nbsp;</span>
+                </div>
+                <p class="hero-desc">
+                    I build premium, robust, and scalable web applications. Bridging the gap between aesthetic frontend
+                    design and powerful backend architecture.
+                </p>
+                <div class="hero-btn-group">
+                    <a href="#contact" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Let's Talk</a>
+                    <a href="ChauhanDhruv_CV.pdf" class="btn secondary-btn"><i class="fa-solid fa-download"></i>
+                        Download Resume</a>
+                </div>
+            </div>
+            <div class="hero-image reveal fade-right">
+                <div class="image-wrapper">
+                    <!-- Placeholder using a tech illustration style avatar -->
+                    <div class="avatar-placeholder">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div class="glow-ring"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <h2 class="section-title reveal">About <span class="highlight">Me</span></h2>
+            <div class="about-container reveal fade-up">
+                <div class="about-text glass-card">
+                    <h3>Aspiring Full Stack Engineer</h3>
+                    <p>I am a passionate BCA student with a deep interest in Full Stack Development. I specialize in
+                        building end-to-end applications using <strong>HTML, CSS, JavaScript, Python, Flask, Postgresql
+                            and
+                            MySQL</strong>.</p>
+                    <p>My journey in tech is driven by a curiosity for how things work under the hood and a desire to
+                        create real-world applications that solve actual problems. I thrive in environments where I can
+                        leverage my skills to build dynamic, data-driven web experiences.</p>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-num counter" data-target="15">0</span><span class="stat-plus">+</span>
+                            <span class="stat-text">Projects Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num counter" data-target="1000">0</span><span class="stat-plus">+</span>
+                            <span class="stat-text">Hours Coded</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num counter" data-target="5">0</span><span class="stat-plus">+</span>
+                            <span class="stat-text">Technologies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <h2 class="section-title reveal">Technical <span class="highlight">Arsenal</span></h2>
+            <div class="skills-container glass-card reveal fade-up">
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-html5" style="color: #e34c26;"></i> HTML5</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-css3-alt" style="color: #264de4;"></i> CSS3 / Animations</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-python" style="color: #306998;"></i> Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-python" style="color: #306998;"></i>PostgreSQL</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-solid fa-pepper-hot" style="color: #fff;"></i> Flask</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-solid fa-database" style="color: #00758F;"></i> MySQL</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info">
+                        <span><i class="fa-brands fa-git-alt" style="color: #F05032;"></i> Git & GitHub</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="75%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <h2 class="section-title reveal">Featured <span class="highlight">Projects</span></h2>
+            <div class="project-grid">
+                <!-- AuraShop -->
+                <div class="project-card glass-card reveal fade-up" style="transition-delay: 0.1s;">
+                    <div class="project-img">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>AuraShop</h3>
+                        <p class="project-subtitle">Full Stack E-Commerce</p>
+                        <p class="project-desc">A premium e-commerce platform featuring user authentication, product
+                            catalog, a shopping cart, and AI-based product suggestions powered by a robust Flask
+                            backend.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>Flask</span><span>JS</span><span>PostgreSQL</span><span>HTML</span><span>CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://auroshop.onrender.com" class="btn-small primary-btn"><i
+                                    class="fa-solid fa-eye"></i> Live Preview</a>
+                            <a href="https://github.com/dhruvchauhan2424/Auroshop" class="btn-small secondary-btn"><i
+                                    class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart College Management System -->
+                <div class="project-card glass-card reveal fade-up" style="transition-delay: 0.2s;">
+                    <div class="project-img">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-university"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Smart College System</h3>
+                        <p class="project-subtitle">Management Portal</p>
+                        <p class="project-desc">A comprehensive smart portal designed for handling complex student
+                            records, database management, and offering robust administrative features.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>HTML/CSS</span><span>Supabase</span><span>PostgreSQL</span><span>Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://college-managementd.onrender.com" class="btn-small primary-btn"><i
+                                    class="fa-solid fa-eye"></i> Live Preview</a>
+                            <a href="https://github.com/dhruvchauhan2424/college_management"
+                                class="btn-small secondary-btn"><i class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Library Management System -->
+                <div class="project-card glass-card reveal fade-up" style="transition-delay: 0.3s;">
+                    <div class="project-img">
+                        <div class="project-placeholder">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Library System</h3>
+                        <p class="project-subtitle">Management Dashboard</p>
+                        <p class="project-desc">A complete system for tracking book issues, searching inventory, and
+                            managing enrollment-based student records securely and efficiently.</p>
+                        <div class="project-tech">
+                            <span>Python</span><span>Flask</span><span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-small primary-btn"><i class="fa-solid fa-eye"></i> Live Preview</a>
+                            <a href="#" class="btn-small secondary-btn"><i class="fa-brands fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience / Timeline -->
+        <section id="experience" class="experience section">
+            <h2 class="section-title reveal">My <span class="highlight">Journey</span></h2>
+            <div class="timeline reveal fade-up">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2026</span>
+                        <h3>BCA Degree (Completed)</h3>
+                        <p>Successfully graduated with a Bachelor of Computer Applications, achieving an outstanding
+                            overall CGPA of 8.4.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">Continuous</span>
+                        <h3>Self-Learning Full Stack</h3>
+                        <p>Diving deep into modern web development. Mastering JavaScript, Python, Flask, and database
+                            architecture through building real-world projects like AuraShop.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-date">2023</span>
+                        <h3>Gujarat Board 12th</h3>
+                        <p>Successfully completed higher secondary education, building a strong analytical foundation
+                            for a future in technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="achievements section">
+            <h2 class="section-title reveal">Academic <span class="highlight">Excellence</span></h2>
+            <p class="section-subtitle reveal">Consistent growth and strong performance throughout the BCA program.</p>
+            <div class="achievements-grid reveal fade-up">
+                <div class="achievement-card glass-card">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3>Overall CGPA</h3>
+                    <div class="sgpa-display">
+                        <span class="sgpa-val counter-float" data-target="8.40">0.00</span>
+                        <span class="sgpa-label">CGPA</span>
+                    </div>
+                </div>
+                <div class="achievement-card glass-card">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-code-branch"></i>
+                    </div>
+                    <h3>Projects Built</h3>
+                    <div class="sgpa-display">
+                        <div>
+                            <span class="sgpa-val counter" data-target="15">0</span><span class="sgpa-val"
+                                style="margin-left: 2px;">+</span>
+                        </div>
+                        <span class="sgpa-label">Projects</span>
+                    </div>
+                </div>
+                <div class="achievement-card glass-card">
+                    <div class="achievement-icon" style="color: var(--cyan);">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3>Technologies</h3>
+                    <div class="sgpa-display">
+                        <div>
+                            <span class="sgpa-val counter" data-target="10">0</span><span class="sgpa-val"
+                                style="margin-left: 2px;">+</span>
+                        </div>
+                        <span class="sgpa-label">Mastered</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services section">
+            <h2 class="section-title reveal">What I <span class="highlight">Do</span></h2>
+            <div class="services-grid reveal fade-up">
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Full Stack Development</h3>
+                    <p>End-to-end web application development integrating beautiful frontends with robust, scalable
+                        backend architectures.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fa-brands fa-python"></i></div>
+                    <h3>Python Development</h3>
+                    <p>Building efficient server-side logic, APIs, and automation scripts utilizing the power of Python
+                        and Flask.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fa-solid fa-desktop"></i></div>
+                    <h3>Frontend UI Design</h3>
+                    <p>Crafting modern, responsive, and highly interactive user interfaces focused on premium aesthetics
+                        and UX.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fa-solid fa-server"></i></div>
+                    <h3>Database Integration</h3>
+                    <p>Designing optimized relational database schemas and managing data securely using MySQL.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <h2 class="section-title reveal">Get In <span class="highlight">Touch</span></h2>
+            <div class="contact-container glass-card reveal fade-up">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Ready to start a project or need a driven developer on your team? Reach out!</p>
+                    <div class="info-items">
+                        <div class="info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:dhruvchauhan242004@gmail.com">dhruvchauhan242004@gmail.com</a>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+918511985253">+91 8511985253</a>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>India</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/dhruvchauhan2424" class="social-icon"><i
+                                class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dhruv-chauhan-386394350/" class="social-icon"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com" class="social-icon"><i
+                                class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form id="contact-form" class="contact-form">
+                        <div class="input-group">
+                            <input type="text" id="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="message" rows="5" required placeholder=" "></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn primary-btn btn-send">
+                            <span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-wrapper">
+                <svg class="footer-logo-svg" width="36" height="36" viewBox="0 0 100 100" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25,25 L55,25 A25,25 0 0,1 80,50 A25,25 0 0,1 55,75 L25,75 Z"
+                        stroke="url(#footer-logo-grad)" stroke-width="8" stroke-linejoin="round" fill="none" />
+                    <path d="M45,25 L45,75" stroke="var(--cyan)" stroke-width="4" />
+                    <path d="M68,38 A15,15 0 0,0 52,50 A15,15 0 0,0 68,62" stroke="var(--purple)" stroke-width="6"
+                        stroke-linecap="round" fill="none" />
+                    <defs>
+                        <linearGradient id="footer-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--cyan)" />
+                            <stop offset="100%" stop-color="var(--purple)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="footer-logo-text">Dhruv Chauhan</span>
+            </div>
+            <p>&copy; 2026 Dhruv Chauhan. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/dhruvchauhan2424"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/dhruv-chauhan-386394350/"><i
+                        class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <button id="scroll-top" class="scroll-top-btn" aria-label="Scroll to top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
