@@ -228,8 +228,13 @@ body {
 .loader-text {
     font-family: var(--font-code);
     color: var(--cyan);
+    font-size: clamp(0.85rem, 3.5vw, 1.1rem);
     letter-spacing: 2px;
     animation: pulse 1.5s infinite;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 90%;
+    line-height: 1.5;
 }
 
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
