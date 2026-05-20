@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruv Chauhan - Resume</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* Base Colors & Variables */
+        :root {
+            --primary-teal: #0D8A72;
+            --primary-hover: #0a6b58;
+            --text-dark: #2d3748;
+            --text-muted: #4a5568;
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15), 0 1px 8px rgba(0,0,0,0.1);
+            --neon-glow: 0 0 15px rgba(13, 138, 114, 0.4);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset and Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(13, 138, 114, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(111, 66, 193, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Floating Action Bar */
+        .action-bar {
+            position: fixed;
+            top: 20px;
+            z-index: 100;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 10px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+        .action-bar:hover {
+            border-color: var(--primary-teal);
+            box-shadow: 0 20px 40px rgba(13, 138, 114, 0.2);
+        }
+        .action-btn {
+            background: transparent;
+            border: none;
+            color: #e2e8f0;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .action-btn i {
+            font-size: 1rem;
+        }
+        .action-btn.primary {
+            background: var(--primary-teal);
+            color: #ffffff;
+            box-shadow: var(--neon-glow);
+        }
+        .action-btn.primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(13, 138, 114, 0.6);
+        }
+        .action-btn.secondary {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Outer Sheet Container for Web View */
+        .resume-container {
+            margin-top: 100px;
+            margin-bottom: 50px;
+            padding: 0 15px;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        /* Printable Sheet Styling - Tightly controlled single-page height */
+        .resume-sheet {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            width: 800px;
+            height: 1120px; /* Fixed height matching A4 aspect ratio (210/297) to guarantee exactly 1 page */
+            box-shadow: var(--shadow-lg);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        /* Teal Header Banner */
+        .resume-header {
+            background-color: var(--primary-teal);
+            color: #ffffff;
+            padding: 22px 35px 16px 35px;
+            text-align: left;
+            position: relative;
+        }
+        .resume-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 3px;
+            text-transform: capitalize;
+        }
+        .resume-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .contact-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.2s ease;
+        }
+        .contact-item:hover {
+            color: #ffffff;
+        }
+        .contact-item i {
+            font-size: 0.85rem;
+            width: 12px;
+            text-align: center;
+        }
+
+        /* Resume Content Body - Compact layout */
+        .resume-body {
+            padding: 20px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        /* Resume Sections */
+        .resume-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            border-bottom: 2px solid var(--primary-teal);
+            padding-bottom: 3px;
+            margin-bottom: 3px;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+        }
+        .section-content {
+            font-size: 0.78rem;
+            line-height: 1.45;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* Entries (Experience, Education, Projects) */
+        .entry-block {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-bottom: 5px;
+        }
+        .entry-block:last-child {
+            margin-bottom: 0;
+        }
+        .entry-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+        .entry-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4a5568;
+            align-items: center;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .meta-item i {
+            color: var(--primary-teal);
+            font-size: 0.8rem;
+        }
+        .meta-item a {
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        .meta-item a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+        .entry-bullets {
+            list-style-type: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .entry-bullets li {
+            position: relative;
+            padding-left: 14px;
+            font-size: 0.76rem;
+            line-height: 1.4;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+        .entry-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: -1px;
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* Skills Section Grid */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .skills-category {
+            display: flex;
+            font-size: 0.78rem;
+            line-height: 1.4;
+        }
+        .skills-label {
+            font-weight: 700;
+            color: #1a202c;
+            width: 180px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .skills-label i {
+            color: var(--primary-teal);
+            width: 14px;
+            text-align: center;
+        }
+        .skills-values {
+            color: var(--text-muted);
+        }
+
+        /* Notification Toast Styling */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(13, 138, 114, 0.95);
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(150px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* PRINT STYLES - Crucial for window.print() pixel-perfection */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                min-height: auto !important;
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .action-bar, .toast {
+                display: none !important; /* Hide actions completely */
+            }
+            .resume-container {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                display: block !important;
+            }
+            .resume-sheet {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                width: 800px !important;
+                height: 1120px !important; /* Fixed A4 height in print to prevent second page splitting */
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+            }
+            .resume-header {
+                background-color: var(--primary-teal) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 22px 35px 16px 35px !important;
+            }
+            .resume-header h1 {
+                color: #ffffff !important;
+            }
+            .resume-header h2 {
+                color: rgba(255,255,255,0.95) !important;
+            }
+            .contact-strip {
+                border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+            }
+            .contact-item {
+                color: #ffffff !important;
+            }
+            .resume-body {
+                padding: 20px 35px !important;
+            }
+            .section-title {
+                color: var(--primary-teal) !important;
+                border-bottom: 2px solid var(--primary-teal) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .meta-item i, .skills-label i {
+                color: var(--primary-teal) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .meta-item a {
+                color: var(--primary-teal) !important;
+            }
+        }
+
+        /* Mobile View Styles */
+        @media (max-width: 768px) {
+            .action-bar {
+                top: auto;
+                bottom: 15px;
+                padding: 8px 15px;
+                gap: 8px;
+                border-radius: 30px;
+                width: 90%;
+                max-width: 450px;
+                justify-content: space-around;
+            }
+            .action-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                gap: 5px;
+            }
+            .action-btn span {
+                display: none; /* Hide button text on mobile */
+            }
+            .action-btn::after {
+                font-size: 0.8rem;
+            }
+            .action-btn.back-btn span {
+                display: inline; /* Keep Back text */
+            }
+            .action-btn.pdf-btn::after {
+                content: " PDF";
+            }
+            .action-btn.print-btn::after {
+                content: " Print";
+            }
+            .action-btn.html-btn::after {
+                content: " HTML";
+            }
+            .resume-container {
+                margin-top: 25px;
+                margin-bottom: 85px;
+            }
+            .resume-sheet {
+                border-radius: 8px;
+                width: 100% !important;
+                height: auto !important; /* Allow natural flow on mobile web screens */
+                min-height: auto !important;
+            }
+            .resume-header {
+                padding: 20px;
+            }
+            .resume-header h1 {
+                font-size: 1.8rem;
+            }
+            .resume-header h2 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+            .contact-strip {
+                flex-direction: column;
+                gap: 6px;
+                padding-top: 10px;
+            }
+            .resume-body {
+                padding: 20px;
+                gap: 20px;
+            }
+            .skills-category {
+                flex-direction: column;
+                gap: 3px;
+                margin-bottom: 6px;
+            }
+            .skills-label {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Action Bar -->
+    <div class="action-bar" id="actionBar">
+        <a href="index.html" class="action-btn secondary back-btn">
+            <i class="fa-solid fa-arrow-left"></i> <span>Back</span>
+        </a>
+        <button onclick="downloadDirectPDF()" class="action-btn primary pdf-btn" id="pdfBtn">
+            <i class="fa-solid fa-file-pdf"></i> <span>Download PDF</span>
+        </button>
+        <button onclick="printResume()" class="action-btn secondary print-btn">
+            <i class="fa-solid fa-print"></i> <span>Print / Save</span>
+        </button>
+        <button onclick="downloadHTML()" class="action-btn secondary html-btn">
+            <i class="fa-solid fa-code"></i> <span>Download HTML</span>
+        </button>
+    </div>
+
+    <!-- Outer Sheet Container for Web View -->
+    <div class="resume-container">
+        <!-- Printable Sheet -->
+        <div class="resume-sheet" id="resumeSheet">
+            
+            <!-- Teal Header Banner -->
+            <div class="resume-header">
+                <h1>Dhruv Chauhan</h1>
+                <h2>Software Developer</h2>
+                
+                <div class="contact-strip">
+                    <a href="tel:+918511985253" class="contact-item">
+                        <i class="fa-solid fa-phone"></i> +91 8511985253
+                    </a>
+                    <a href="mailto:dhruvchauhan242004@gmail.com" class="contact-item">
+                        <i class="fa-solid fa-envelope"></i> dhruvchauhan242004@gmail.com
+                    </a>
+                    <span class="contact-item">
+                        <i class="fa-solid fa-map-pin"></i> Ahmedabad , India
+                    </span>
+                    <a href="https://dhruvchauhan.in" class="contact-item" target="_blank" id="portfolioLink">
+                        <i class="fa-solid fa-link"></i> Portfolio
+                    </a>
+                    <a href="https://www.linkedin.com/in/dhruv-chauhan-386394350/" class="contact-item" target="_blank">
+                        <i class="fa-solid fa-link"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Resume Content Body -->
+            <div class="resume-body">
+                
+                <!-- Summary Section -->
+                <div class="resume-section">
+                    <h3 class="section-title">Summary</h3>
+                    <div class="section-content">
+                        Motivated and detail-oriented BCA student seeking an internship opportunity to apply my programming knowledge and gain hands-on experience in software development, Full stack development and IT projects. Eager to contribute to a dynamic team and enhance my skills in a real-world work environment.
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="resume-section">
+                    <h3 class="section-title">Experience</h3>
+                    
+                    <!-- Intern Entry -->
+                    <div class="entry-block">
+                        <div class="entry-title">Intern</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><strong>IBM SkillBuild</strong></span>
+                            <span class="meta-item"><i class="fa-solid fa-calendar-days"></i> July 2025 - August 2025</span>
+                            <span class="meta-item"><i class="fa-solid fa-map-pin"></i> Virtual</span>
+                        </div>
+                        <ul class="entry-bullets">
+                            <li>Completed a 30-day internship on "Decoding Data: Insights & Impact through Analytics", gaining hands-on experience in data analysis, visualization.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Student Ambassador Entry -->
+                    <div class="entry-block">
+                        <div class="entry-title">Student Ambassador</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><strong>Google</strong></span>
+                            <span class="meta-item"><i class="fa-solid fa-calendar-days"></i> December 2025 - Present</span>
+                        </div>
+                        <ul class="entry-bullets">
+                            <li>Represented Google on campus by promoting Google products, programs, and initiatives.</li>
+                            <li>Organized and participated in technical workshops, info sessions, and community events.</li>
+                            <li>Worked as a connection between Google and students, improving awareness and engagement within the campus community.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="resume-section">
+                    <h3 class="section-title">Education</h3>
+
+                    <!-- Higher Secondary -->
+                    <div class="entry-block">
+                        <div class="entry-title">HIGHER SECONDARY EDUCATION</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><strong>Hossana Mision</strong></span>
+                            <span class="meta-item"><i class="fa-solid fa-graduation-cap"></i> Percentage: 70</span>
+                            <span class="meta-item"><i class="fa-solid fa-calendar-days"></i> April 2023</span>
+                            <span class="meta-item"><i class="fa-solid fa-map-pin"></i> Ahmedabad</span>
+                        </div>
+                    </div>
+
+                    <!-- BCA -->
+                    <div class="entry-block">
+                        <div class="entry-title">Bachelor Of Computer Application</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><strong>K N University</strong></span>
+                            <span class="meta-item"><i class="fa-solid fa-graduation-cap"></i> CGPA: 8.4</span>
+                            <span class="meta-item"><i class="fa-solid fa-calendar-days"></i> January 2023 - January 2026</span>
+                            <span class="meta-item"><i class="fa-solid fa-map-pin"></i> Ahmedabad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="resume-section">
+                    <h3 class="section-title">Projects</h3>
+
+                    <!-- AuraShop -->
+                    <div class="entry-block">
+                        <div class="entry-title">AuraShop - Premium Full-Stack E-Commerce Platform</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><i class="fa-solid fa-link"></i> <a href="https://auroshop.onrender.com" target="_blank">https://auroshop.onrender.com</a></span>
+                        </div>
+                        <ul class="entry-bullets">
+                            <li>Developed a modern full-stack e-commerce platform using Python, Flask, PostgreSQL With Supabase, HTML, CSS, JavaScript, and GSAP with a premium glassmorphic UI and smooth animations.</li>
+                            <li>Implemented secure user/admin authentication, AJAX-based shopping cart, Razorpay payment integration, and responsive frontend design.</li>
+                            <li>Also advanced features including product reviews & ratings, digital invoice generation, delivery tracking system, and a dedicated admin dashboard for product and order management.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Smart College -->
+                    <div class="entry-block">
+                        <div class="entry-title">Smart College Management System</div>
+                        <div class="entry-meta">
+                            <span class="meta-item"><i class="fa-solid fa-link"></i> <a href="https://college-managementd.onrender.com" target="_blank">https://college-managementd.onrender.com</a></span>
+                        </div>
+                        <ul class="entry-bullets">
+                            <li>Developed a full-stack College Management System using Flask, PostgreSQL, HTML, CSS, JavaScript, and Bootstrap 5 with role-based dashboards for Admin, Faculty, Students, and Accountant.</li>
+                            <li>Implemented student management, auto-generated enrollment numbers, timetable, exams, fees management(Razorpay,Cash), and notice modules.</li>
+                            <li>Also a secure QR-based attendance system with time-limited QR generation, real-time attendance tracking, analytics, and fraud detection using device/IP logging.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="resume-section">
+                    <h3 class="section-title">Skills</h3>
+                    <div class="skills-grid">
+                        
+                        <!-- Languages -->
+                        <div class="skills-category">
+                            <span class="skills-label"><i class="fa-solid fa-code"></i> Languages</span>
+                            <span class="skills-values">Python, HTML, CSS, JavaScript, Solidity</span>
+                        </div>
+
+                        <!-- Frameworks & Databases -->
+                        <div class="skills-category">
+                            <span class="skills-label"><i class="fa-solid fa-cubes"></i> Frameworks & Database</span>
+                            <span class="skills-values">Flask, MySQL, PostgreSQL, Supabase</span>
+                        </div>
+
+                        <!-- Tools & Technology -->
+                        <div class="skills-category">
+                            <span class="skills-label"><i class="fa-solid fa-screwdriver-wrench"></i> Tools & Technology</span>
+                            <span class="skills-values">GitHub, CloudFlare, IOT, Blockchain, Render</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <script>
+        // Set dynamic URL for portfolio link to match standard window origin if viewing locally
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioLink = document.getElementById('portfolioLink');
+            if (portfolioLink) {
+                // Point back to local or relative path
+                portfolioLink.href = 'index.html';
+            }
+        });
+
+        // Helper function to show notifications
+        function showNotification(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Method 1: Advanced Direct PDF Download using html2pdf.js
+        function downloadDirectPDF() {
+            const element = document.getElementById('resumeSheet');
+            const pdfBtn = document.getElementById('pdfBtn');
+            const originalContent = pdfBtn.innerHTML;
+            
+            // Show downloading state
+            pdfBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Compiling...</span>';
+            pdfBtn.disabled = true;
+            
+            // Custom configuration for standard A4 high-res printing
+            const opt = {
+                margin:       [0, 0, 0, 0], // Margin is controlled in stylesheet/print mode
+                filename:     'ChauhanDhruv_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2.5, useCORS: true, letterRendering: true, logging: false },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Generate and download
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore button state
+                pdfBtn.innerHTML = originalContent;
+                pdfBtn.disabled = false;
+                showNotification('Resume PDF downloaded successfully!');
+            }).catch(err => {
+                console.error(err);
+                pdfBtn.innerHTML = originalContent;
+                pdfBtn.disabled = false;
+                showNotification('PDF generation failed. Please try "Print / Save".');
+            });
+        }
+
+        // Method 2: Browser Print (which lets user save high-fidelity PDF with vectors)
+        function printResume() {
+            showNotification('Opening browser print settings...');
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        }
+
+        // Method 3: Download Offline HTML file
+        function downloadHTML() {
+            try {
+                // Create a clone of the document to extract the HTML clean
+                const htmlContent = '<!DOCTYPE html>\n<html lang="en">\n' + document.documentElement.innerHTML + '\n</html>';
+                
+                // Strip the floating action bar from the downloaded HTML to make it a clean resume page
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+                const bar = doc.getElementById('actionBar');
+                if (bar) bar.remove();
+                
+                // Create a blob and trigger download
+                const blob = new Blob([doc.documentElement.outerHTML], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ChauhanDhruv_Resume.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification('Resume HTML file downloaded!');
+            } catch (err) {
+                console.error(err);
+                showNotification('Failed to download HTML file.');
+            }
+        }
+    </script>
+</body>
+</html>
