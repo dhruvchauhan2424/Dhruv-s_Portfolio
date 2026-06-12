@@ -18,8 +18,21 @@
 </head>
 
 <body>
+    <!-- Aurora + Shockwave Layers (Crazy Mode) -->
+    <div id="aurora-bg" aria-hidden="true">
+        <div class="aurora-blob aurora-1"></div>
+        <div class="aurora-blob aurora-2"></div>
+        <div class="aurora-blob aurora-3"></div>
+    </div>
+    <div id="crazy-shockwaves" aria-hidden="true"></div>
+
     <!-- Ultra-Premium Custom Cursor -->
     <div id="magic-cursor">
+        <div id="cursor-orbit-rings" aria-hidden="true">
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-ring ring-3"></div>
+        </div>
         <div id="cursor-particles"></div>
         <div id="cursor-main">
             <div class="cursor-glow"></div>
@@ -82,10 +95,19 @@
                     <li><a href="#projects" class="nav-link">Projects</a></li>
                     <li><a href="#experience" class="nav-link">Journey</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="resume.html" target="_blank" class="nav-link">Resume</a></li>
+                    <li><a href="resume.html?download=pdf" class="nav-link">Resume</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
+            <button id="crazy-mode-toggle" class="crazy-mode-btn" aria-label="Toggle crazy animations"
+                title="Crazy Mode">
+                <i class="fa-solid fa-bolt"></i>
+                <span class="crazy-mode-label">CRAZY</span>
+            </button>
+            <button id="cursor-settings-toggle" class="cursor-settings-btn" aria-label="Customize cursor"
+                title="Cursor Options">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </button>
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="theme-slider">
                     <input type="checkbox" id="theme-slider" />
@@ -108,8 +130,8 @@
         <section id="home" class="hero section">
             <div class="hero-content reveal">
                 <p class="greeting">System Ready <i class="fa-solid fa-bolt" style="color: var(--cyan);"></i></p>
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Dhruv Chauhan</span>
+                <h1 class="hero-title crazy-glitch-title">
+                    Hi, I'm <span class="highlight crazy-gradient-text">Dhruv Chauhan</span>
                 </h1>
                 <div class="typing-container">
                     <span class="typing-text"></span><span class="cursor">&nbsp;</span>
@@ -120,7 +142,7 @@
                 </p>
                 <div class="hero-btn-group">
                     <a href="#contact" class="btn primary-btn"><i class="fa-solid fa-paper-plane"></i> Let's Talk</a>
-                    <a href="resume.html" target="_blank" class="btn secondary-btn"><i class="fa-solid fa-file-invoice"></i> View / Download Resume</a>
+                    <a href="resume.html?download=pdf" class="btn secondary-btn"><i class="fa-solid fa-file-invoice"></i> Download Resume</a>
                 </div>
             </div>
             <div class="hero-image reveal fade-right">
@@ -130,6 +152,8 @@
                         <i class="fa-solid fa-user-astronaut"></i>
                     </div>
                     <div class="glow-ring"></div>
+                    <div class="glow-ring glow-ring-2"></div>
+                    <div class="glow-ring glow-ring-3"></div>
                 </div>
             </div>
         </section>
@@ -513,6 +537,103 @@
             <i class="fa-solid fa-arrow-up"></i>
         </button>
     </footer>
+
+    <!-- Cursor Customization Panel -->
+    <aside id="cursor-settings-panel" class="cursor-settings-panel" aria-hidden="true">
+        <div class="cursor-panel-header">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Cursor Studio</h3>
+            <button id="cursor-settings-close" class="cursor-panel-close" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="cursor-panel-body">
+            <div class="cursor-style-section">
+                <p class="cursor-section-label">Choose Cursor <span class="cursor-count">(12 styles)</span></p>
+                <div class="cursor-style-grid" id="cursor-style-grid"></div>
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-hover-text">Hover Text</label>
+                <input type="text" id="cursor-hover-text" class="cursor-text-input" value="View Project"
+                    maxlength="24" placeholder="View Project">
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-size">Size <span class="cursor-val" data-for="cursor-size">40</span>px</label>
+                <input type="range" id="cursor-size" min="20" max="80" value="40">
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-primary">Primary Color</label>
+                <input type="color" id="cursor-primary" value="#00f2fe">
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-secondary">Secondary Color</label>
+                <input type="color" id="cursor-secondary" value="#8a2be2">
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-glow">Glow Intensity <span class="cursor-val" data-for="cursor-glow">70</span>%</label>
+                <input type="range" id="cursor-glow" min="0" max="100" value="70">
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-speed">Follow Speed <span class="cursor-val" data-for="cursor-speed">15</span>%</label>
+                <input type="range" id="cursor-speed" min="5" max="100" value="15">
+            </div>
+            <div class="cursor-option toggle-option">
+                <label for="cursor-particles">Particle Trails</label>
+                <label class="cursor-toggle">
+                    <input type="checkbox" id="cursor-particles" checked>
+                    <span class="cursor-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-particle-rate">Particle Rate <span class="cursor-val" data-for="cursor-particle-rate">3</span></label>
+                <input type="range" id="cursor-particle-rate" min="1" max="10" value="3">
+            </div>
+            <div class="cursor-option toggle-option">
+                <label for="cursor-rotation">Rotation Effect</label>
+                <label class="cursor-toggle">
+                    <input type="checkbox" id="cursor-rotation" checked>
+                    <span class="cursor-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="cursor-option toggle-option">
+                <label for="cursor-stretch">Stretch on Move</label>
+                <label class="cursor-toggle">
+                    <input type="checkbox" id="cursor-stretch" checked>
+                    <span class="cursor-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-hover-size">Hover Button Size <span class="cursor-val" data-for="cursor-hover-size">60</span>px</label>
+                <input type="range" id="cursor-hover-size" min="40" max="100" value="60">
+            </div>
+            <div class="cursor-option toggle-option">
+                <label for="cursor-show-glow">Show Glow</label>
+                <label class="cursor-toggle">
+                    <input type="checkbox" id="cursor-show-glow" checked>
+                    <span class="cursor-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="cursor-option toggle-option">
+                <label for="cursor-project-label">Project Hover Label</label>
+                <label class="cursor-toggle">
+                    <input type="checkbox" id="cursor-project-label" checked>
+                    <span class="cursor-toggle-slider"></span>
+                </label>
+            </div>
+            <div class="cursor-option">
+                <label for="cursor-blend">Blend Mode</label>
+                <select id="cursor-blend">
+                    <option value="normal">Normal</option>
+                    <option value="difference">Difference</option>
+                    <option value="screen">Screen</option>
+                    <option value="overlay">Overlay</option>
+                </select>
+            </div>
+            <button id="cursor-reset" class="btn secondary-btn cursor-reset-btn">
+                <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+            </button>
+        </div>
+    </aside>
+    <div id="cursor-panel-overlay" class="cursor-panel-overlay"></div>
 
     <script src="script.js"></script>
 </body>
